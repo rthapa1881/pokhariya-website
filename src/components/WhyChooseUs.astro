@@ -1,0 +1,32 @@
+---
+import { whyChooseUs } from '@/data'
+---
+
+<section class="bg-white">
+	<div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+		<div class="max-w-screen-md mb-8 lg:mb-16 mx-auto text-center">
+			<h2
+				class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900"
+			>
+				Why choose us?
+			</h2>
+			<p class="text-gray-500 sm:text-xl">
+				At Pokhariya Secondary School, we offer excellent facilities,
+				including modern classrooms and labs, to support innovative
+				teaching methods.
+			</p>
+		</div>
+		<div
+			class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0 text-center md:text-left"
+		>
+			{
+				whyChooseUs.map(({ title, description }) => (
+					<div>
+						<h3 class="mb-2 text-xl font-bold ">{title}</h3>
+						<p class="text-gray-500 ">{description}</p>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>

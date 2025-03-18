@@ -1,0 +1,57 @@
+---
+import Layout from '@/layouts/Layout.astro'
+
+import { contentfulClient } from '@/contentful'
+
+const entries = await contentfulClient.getEntries({
+	content_type: 'gallery',
+})
+---
+
+<Layout title="Gallery | Shree Pokhariya Secondary School">
+	<section class="bg-white dark:bg-gray-900">
+		<div
+			class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6"
+		>
+			<div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
+				<h2
+					class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+				>
+					Image Gallery
+				</h2>
+				<p class="text-gray-500 sm:text-xl dark:text-gray-400">
+					Explore the whole collection of images of students
+					participating in different events and programs organized by
+					school.
+				</p>
+			</div>
+
+			<div class="grid md:grid-cols-2 gap-4">
+				{
+					entries.items.map(item => {
+						const { name, description, thumbnail, slug } =
+							item.fields
+
+						return (
+							<a
+								href={`/gallery/${slug}`}
+								class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+							>
+								<img
+									class="object-cover object-center w-full rounded-t-lg h-96 md:w-3/4 md:rounded-none md:rounded-s-lg"
+									src={`${thumbnail.fields.file.url}?fm=webp`}
+									alt={name}
+								/>
+								<div class="flex flex-col justify-between p-4 leading-normal">
+									<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+										{name}
+									</h5>
+								</div>
+							</a>
+						)
+					})
+				}
+			</div>
+		</div>
+	</section>
+</Layout>

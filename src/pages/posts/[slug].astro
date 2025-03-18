@@ -1,0 +1,40 @@
+---
+import { contentfulClient } from '@/contentful'
+import Layout from '@/layouts/Layout.astro'
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+
+export async function getStaticPaths() {
+	const { items } = await contentfulClient.getEntries({
+		content_type: 'posts',
+	})
+	const pages = items.map(item => ({
+		params: { slug: item.fields.slug },
+		props: {
+			title: item.fields.title,
+			image: item.fields.thumbnail?.fields.file.url,
+			content: documentToHtmlString(item.fields.content),
+		},
+	}))
+	return pages
+}
+
+const { content, title, image } = Astro.props
+---
+
+<Layout title={`${title} | Shree Pokhariya Secondary School`}>
+	{
+		image && (
+			<div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6 ">
+				<img
+					src={`${image}?fm=webp`}
+					alt={title}
+					class="mx-auto max-h-screen"
+				/>
+			</div>
+		)
+	}
+	<article
+		set:html={content}
+		class="prose lg:prose-xl p-8 md:p-16 prose-h1:text-center prose-h1:text-4xl mx-auto"
+	/>
+</Layout>

@@ -1,0 +1,49 @@
+---
+import { contentfulClient } from '@/contentful'
+
+const entries = await contentfulClient.getEntries({
+	content_type: 'posts',
+})
+
+const newItems = entries.items.filter(item =>
+	Object.hasOwn(item.fields, 'isNotice'),
+)
+---
+
+<div
+	class="fixed top-[64px] w-full min-w-screen flex overflow-x-hidden bg-teal-600 text-white z-50"
+>
+	<div class="py-2 animate-marquee whitespace-nowrap">
+		{
+			newItems.map(item => {
+				const { title, slug } = item.fields
+
+				return (
+					<a
+						href={`/posts/${slug}`}
+						class="mx-4"
+					>
+						{title}
+					</a>
+				)
+			})
+		}
+	</div>
+
+	<div class="absolute top-0 py-2 animate-marquee2 whitespace-nowrap">
+		{
+			newItems.map(item => {
+				const { title, slug } = item.fields
+
+				return (
+					<a
+						href={`/posts/${slug}`}
+						class="mx-4"
+					>
+						{title}
+					</a>
+				)
+			})
+		}
+	</div>
+</div>

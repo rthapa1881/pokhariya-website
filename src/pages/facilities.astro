@@ -1,0 +1,56 @@
+---
+import Layout from '@/layouts/Layout.astro'
+
+import { contentfulClient } from '@/contentful'
+
+const entries = await contentfulClient.getEntries({
+	content_type: 'facilities',
+})
+---
+
+<Layout title="Facilities | Shree Pokhariya Secondary School">
+	<section class="bg-white dark:bg-gray-900">
+		<div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+			<div class="mx-auto mb-8 max-w-screen-sm lg:mb-16 text-center">
+				<h2
+					class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+				>
+					Facilities
+				</h2>
+				<p class="text-gray-500 sm:text-xl dark:text-gray-400">
+					Discover top-notch facilities, fostering academic
+					excellence, digital literacy, intellectual exploration, and
+					physical well-being.
+				</p>
+			</div>
+
+			<div>
+				{
+					entries.items.map((item, index) => {
+						const { name, description, image } = item.fields
+
+						const isLeft = index % 2 === 0
+
+						return (
+							<div class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
+								<img
+									src={`${image.fields.file.url}?fm=webp`}
+									class={`w-full shadow-md ${isLeft && 'md:order-last'}`}
+									alt="dashboard image"
+								/>
+								<div class="mt-4 md:mt-0">
+									<h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+										{name}
+									</h2>
+									<p class="mb-6 text-gray-500 md:text-lg dark:text-gray-400">
+										{description}
+									</p>
+								</div>
+							</div>
+						)
+					})
+				}
+			</div>
+		</div>
+	</section>
+</Layout>

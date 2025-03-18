@@ -1,0 +1,81 @@
+---
+import Layout from '@/layouts/Layout.astro'
+
+import { contentfulClient } from '@/contentful'
+
+const entries = await contentfulClient.getEntries({
+	content_type: 'team',
+})
+
+const coreTeam = entries.items.filter(item => item.fields.core)
+const remainTeam = entries.items.filter(item => !item.fields.core)
+---
+
+<Layout title="Our team | Shree Pokhariya Secondary Schoolw">
+	<section class="bg-white dark:bg-gray-900">
+		<div
+			class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6"
+		>
+			<div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
+				<h2
+					class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+				>
+					Our team
+				</h2>
+				<p class="text-gray-500 sm:text-xl dark:text-gray-400">
+					Meet our dedicated team committed to nurturing student
+					potential and fostering excellence in education.
+				</p>
+			</div>
+			<div
+				class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+			>
+				{
+					coreTeam.map(item => {
+						const { photo, name, profession } = item.fields
+
+						return (
+							<div class="text-center text-gray-500 dark:text-gray-400">
+								<img
+									class="mx-auto mb-4 w-36 h-36 rounded-full object-cover border-2 border-teal-500"
+									src={`${photo.fields.file.url}?fm=webp`}
+									loading="lazy"
+									alt="Bonnie Avatar"
+								/>
+								<h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+									{name}
+								</h3>
+								<p>{profession}</p>
+							</div>
+						)
+					})
+				}
+			</div>
+			<hr class="h-px my-8 bg-gray-200 border-0" />
+			<div
+				class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+			>
+				{
+					remainTeam.map(item => {
+						const { photo, name, profession } = item.fields
+
+						return (
+							<div class="text-center text-gray-500 dark:text-gray-400">
+								<img
+									class="mx-auto mb-4 w-36 h-36 rounded-full object-cover border-2 border-teal-500"
+									src={`${photo.fields.file.url}?fm=webp`}
+									loading="lazy"
+									alt="Bonnie Avatar"
+								/>
+								<h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+									{name}
+								</h3>
+								<p>{profession}</p>
+							</div>
+						)
+					})
+				}
+			</div>
+		</div>
+	</section>
+</Layout>

@@ -1,0 +1,21 @@
+---
+const { title } = Astro.props
+
+import Meta from '@/components/Meta.astro'
+import Navbar from '@/components/Navbar.astro'
+import Marquee from '@/components/Marquee.astro'
+---
+
+<!doctype html>
+<html lang="en">
+	<Meta title={title} />
+	<body class="mt-[104px]">
+		<Navbar />
+		<Marquee />
+		<slot />
+		<script
+			is:inline
+			src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"
+		></script>
+	</body>
+</html>
