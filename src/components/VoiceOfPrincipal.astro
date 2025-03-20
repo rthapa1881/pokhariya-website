@@ -9,25 +9,29 @@ const entries = await contentfulClient.getEntries({
 const text = entries.items[0].fields.text
 ---
 
-<section>
-	<div
-		class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6 text-center md:text-left"
-	>
-		<Image
-			src={import('@/images/khremraj-bhattarai.jpg')}
-			class="shadow-lg"
-			loading="lazy"
-			alt="dashboard image"
-		/>
-		<div class="mt-4 md:mt-0">
+<section class="bg-teal-100">
+	<div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+		<div class="max-w-screen-md mb-8 lg:mb-16 mx-auto text-center">
 			<h2
 				class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900"
 			>
 				Voice of Principal
 			</h2>
-			<p class="mb-6 text-gray-500 md:text-lg">
-				{text}
-			</p>
+		</div>
+		<div>
+			<Image
+				src={import('@/images/khremraj-bhattarai.jpg')}
+				class="shadow-lg float-right w-40 h-40 border-2 border-teal-800 rounded mb-4 ml-4"
+				loading="lazy"
+				alt="dashboard image"
+			/>
+			<div class="mt-4 md:mt-0">
+				<p
+					class="mb-6 text-gray-500 md:text-lg text-justify whitespace-pre-wrap"
+				>
+					{text}
+				</p>
+			</div>
 		</div>
 	</div>
 </section>

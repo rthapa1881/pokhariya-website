@@ -6,9 +6,6 @@ module.exports = {
 	],
 	theme: {
 		extend: {
-			backgroundImage: {
-				'hero': "url('/images/school-premises.jpg')",
-			  },
 			typography: {
 				DEFAULT: {
 					css: {

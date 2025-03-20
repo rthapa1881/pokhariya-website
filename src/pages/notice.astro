@@ -40,9 +40,9 @@ const posts = entries.items.filter(item => item.fields.slug != 'about-us')
 							})
 
 							return (
-								<div>
+								<div class="border-b pb-4">
 									<p class="text-sm">{formattedDate}</p>
-									<li class="md:flex justify-between items-center border-b pb-4 gap-4">
+									<li class="md:flex justify-between items-center  gap-4">
 										<a
 											href={`/posts/${slug}`}
 											class="block text-2xl tracking-tight font-bold text-gray-900 "
