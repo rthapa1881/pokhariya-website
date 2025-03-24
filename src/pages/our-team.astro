@@ -8,10 +8,11 @@ const entries = await contentfulClient.getEntries({
 })
 
 const coreTeam = entries.items.filter(item => item.fields.core)
-const remainTeam = entries.items.filter(item => !item.fields.core)
+const remainTeam = entries.items.filter(item => !item.fields.core).reverse()
+
 ---
 
-<Layout title="Our team | Shree Pokhariya Secondary Schoolw">
+<Layout title="Our team | Shree Pokhariya Secondary School">
 	<section class="bg-white dark:bg-gray-900">
 		<div
 			class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6"
