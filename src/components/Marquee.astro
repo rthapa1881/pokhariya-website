@@ -5,9 +5,15 @@ const entries = await contentfulClient.getEntries({
 	content_type: 'posts',
 })
 
-const newItems = entries.items.filter(item =>
+let newItems = entries.items.filter(item =>
 	Object.hasOwn(item.fields, 'isNotice'),
 )
+
+const oneMonthAgo = new Date();
+oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+
+newItems = newItems.filter(item => new Date(item.sys.publishedAt) >= oneMonthAgo);
+newItems = newItems.filter(item => item.fields.title != 'About us')
 ---
 
 <div
