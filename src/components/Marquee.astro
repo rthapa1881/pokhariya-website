@@ -12,8 +12,7 @@ let newItems = entries.items.filter(item =>
 const oneMonthAgo = new Date();
 oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
 
-newItems = newItems.filter(item => new Date(item.sys.publishedAt) >= oneMonthAgo);
-newItems = newItems.filter(item => item.fields.title != 'About us')
+// newItems = newItems.filter(item => new Date(item.sys.publishedAt) >= oneMonthAgo);
 ---
 
 <div
