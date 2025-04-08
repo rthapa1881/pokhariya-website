@@ -9,7 +9,6 @@ const entries = await contentfulClient.getEntries({
 
 const coreTeam = entries.items.filter(item => item.fields.core).reverse()
 const remainTeam = entries.items.filter(item => !item.fields.core).reverse()
-
 ---
 
 <Layout title="Our team | Shree Pokhariya Secondary School">
@@ -39,7 +38,7 @@ const remainTeam = entries.items.filter(item => !item.fields.core).reverse()
 							<div class="text-center text-gray-500 dark:text-gray-400">
 								<img
 									class="mx-auto mb-4 w-36 h-36 rounded-full object-cover border-2 border-teal-500"
-									src={`${photo.fields.file.url}?fm=webp`}
+									src={`${photo.fields.file?.url}?fm=webp`}
 									loading="lazy"
 									alt="Bonnie Avatar"
 								/>
@@ -64,7 +63,7 @@ const remainTeam = entries.items.filter(item => !item.fields.core).reverse()
 							<div class="text-center text-gray-500 dark:text-gray-400">
 								<img
 									class="mx-auto mb-4 w-36 h-36 rounded-full object-cover border-2 border-teal-500"
-									src={`${photo.fields.file.url}?fm=webp`}
+									src={`${photo.fields.file?.url}?fm=webp`}
 									loading="lazy"
 									alt="Bonnie Avatar"
 								/>
