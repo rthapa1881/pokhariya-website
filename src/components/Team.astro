@@ -7,8 +7,7 @@ const entries = await contentfulClient.getEntries({
 	content_type: 'team',
 })
 
-const coreTeam = entries.items.filter(item => item.fields.core)
-const remainTeam = entries.items.filter(item => !item.fields.core)
+const coreTeam = entries.items.filter(item => item.fields.core).reverse()
 ---
 
 <section class="bg-white dark:bg-gray-900">
