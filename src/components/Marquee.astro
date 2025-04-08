@@ -5,22 +5,17 @@ const entries = await contentfulClient.getEntries({
 	content_type: 'posts',
 })
 
-let newItems = entries.items.filter(item =>
+const noticesToShow = entries.items.filter(item =>
 	Object.hasOwn(item.fields, 'isNotice'),
 )
-
-const oneMonthAgo = new Date();
-oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
-
-// newItems = newItems.filter(item => new Date(item.sys.publishedAt) >= oneMonthAgo);
 ---
 
 <div
-	class="fixed top-[64px] w-full min-w-screen flex overflow-x-hidden bg-teal-600 text-white z-50"
+	class="fixed top-[64px] w-full min-w-screen flex overflow-x-hidden bg-teal-600 text-white z-10"
 >
 	<div class="py-2 animate-marquee whitespace-nowrap">
 		{
-			newItems.map(item => {
+			noticesToShow.map(item => {
 				const { title, slug } = item.fields
 
 				return (
@@ -37,7 +32,7 @@ oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
 
 	<div class="absolute top-0 py-2 animate-marquee2 whitespace-nowrap">
 		{
-			newItems.map(item => {
+			noticesToShow.map(item => {
 				const { title, slug } = item.fields
 
 				return (

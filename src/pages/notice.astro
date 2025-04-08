@@ -7,7 +7,7 @@ const entries = await contentfulClient.getEntries({
 	content_type: 'posts',
 })
 
-const posts = entries.items.filter(item => item.fields.slug != 'about-us')
+const notices = entries.items
 ---
 
 <Layout title="Notice | Shree Pokhariya Secondary School">
@@ -28,7 +28,7 @@ const posts = entries.items.filter(item => item.fields.slug != 'about-us')
 			<div>
 				<ul class="space-y-8">
 					{
-						posts.map(item => {
+						notices.map(item => {
 							const { title, slug, date } = item.fields
 
 							let formattedDate = new Date(
